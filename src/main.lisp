@@ -24,8 +24,7 @@
                                     (lambda (s)
                                       (-> (str:trim s) (string-downcase)))
                                     (str:split "-" aa))
-                                  score))))))
-    ))
+                                  score))))))))
 
 (defun input (filepath)
   (->>
@@ -89,8 +88,7 @@
     (format t "~&===== RANK: ALBUMS =====~%~{~{~a: ~a~}~&~}~%" all-albums)
     (format t "~&===== RANK: ARTISTS BY ALBUM SCORE =====~%~{~{~a: ~a~}~&~}~%" all-artists)
     (format t "~&===== RANK: ARTISTS BY ALBUM COUNT =====~%~{~{~a: ~a~}~&~}~%" all-artists-count)
-    (format t "~&===== RANK PEOPLE BY ALBUM SCORE =====~%~{~{~a: ~a~}~&~}~%" people-by-album)
-  ))
+    (format t "~&===== RANK PEOPLE BY ALBUM SCORE =====~%~{~{~a: ~a~}~&~}~%" people-by-album)))
 
 
 (defun main (argvs)
