@@ -23,7 +23,7 @@
                                   (mapcar
                                     (lambda (s)
                                       (-> (str:trim s) (string-downcase)))
-                                    (str:split "-" aa))
+                                    (str:split "//" aa))
                                   score))))))))
 
 (defun input (filepath)

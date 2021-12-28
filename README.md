@@ -5,7 +5,7 @@ $ brew install sbcl
 
 # copy .env.sample -> .env, update and source
 # create a local/ranking.txt file, each row formatted like:
-# PersonName | No. 10 Album - Artist Name | No. 9 Album - Artist Name | No. 8 Album - Artist Name | No. 7 Album - Artist Name | No. 6 Album - Artist Name | No. 5 Album - Artist Name | No. 4 Album - Artist Name | No. 3 Album - Artist Name | No. 2 Album - Artist Name | No. 1 Album - Artist Name 
+# PersonName | No. 10 Album // Artist Name | No. 9 Album // Artist Name | No. 8 Album // Artist Name | No. 7 Album // Artist Name | No. 6 Album // Artist Name | No. 5 Album // Artist Name | No. 4 Album // Artist Name | No. 3 Album // Artist Name | No. 2 Album // Artist Name | No. 1 Album // Artist Name 
 
 $ RANKING_FILE=local/sample.txt make run
 ./build/bin/topten
