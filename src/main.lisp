@@ -78,6 +78,11 @@
       (sort-hash scored-people)
       scored-people)))
 
+(defun enumerate (l &key (start 0))
+  (loop for e in l
+        for i from start
+        collect (list i e)))
+
 (defun run-main ()
   (log:info "ranking from: ~a" (topten.config:value :ranking-file))
   (bind ((rankings (input (topten.config:value :ranking-file)))
@@ -85,10 +90,22 @@
          ((all-albums all-artists-count all-artists) sorted)
          ((hashed-albums hashed-artists-count hashed-artists) hashed)
          (people-by-album (rank-people-by-album rankings hashed-albums)))
-    (format t "~&===== RANK: ALBUMS =====~%~{~{~a: ~a~}~&~}~%" all-albums)
-    (format t "~&===== RANK: ARTISTS BY ALBUM SCORE =====~%~{~{~a: ~a~}~&~}~%" all-artists)
-    (format t "~&===== RANK: ARTISTS BY ALBUM COUNT =====~%~{~{~a: ~a~}~&~}~%" all-artists-count)
-    (format t "~&===== RANK PEOPLE BY ALBUM SCORE =====~%~{~{~a: ~a~}~&~}~%" people-by-album)))
+    (format t "~&===== RANK: ALBUMS =====~%~{~{~a.) ~:(~a~): ~a~}~&~}~%"
+            (mapcar
+              (lambda (x) (apply #'cons x))
+              (enumerate all-albums :start 1)))
+    (format t "~&===== RANK: ARTISTS BY ALBUM SCORE =====~%~{~{~a.) ~:(~a~): ~a~}~&~}~%"
+            (mapcar
+              (lambda (x) (apply #'cons x))
+              (enumerate all-artists :start 1)))
+    (format t "~&===== RANK: ARTISTS BY ALBUM COUNT =====~%~{~{~a.) ~:(~a~): ~a~}~&~}~%"
+            (mapcar
+              (lambda (x) (apply #'cons x))
+              (enumerate all-artists-count :start 1)))
+    (format t "~&===== RANK PEOPLE BY ALBUM SCORE =====~%~{~{~a.) ~:(~a~): ~a~}~&~}~%"
+            (mapcar
+              (lambda (x) (apply #'cons x))
+              (enumerate people-by-album :start 1)))))
 
 
 (defun main (argvs)
